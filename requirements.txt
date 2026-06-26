@@ -1,4 +1,6 @@
 aiogram==3.20.0
 aiohttp
+aiosqlite
 python-dotenv
 requests
+uvloop; platform_system != "Windows"
