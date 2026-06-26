@@ -1,20 +1,14 @@
-from aiogram import Bot, Dispatcher
-from aiogram.filters import CommandStart
-from aiogram.types import Message
 import asyncio
-import os
 
-TOKEN = os.getenv("BOT_TOKEN")
+from aiogram import Bot, Dispatcher
 
-bot = Bot(token=TOKEN)
+from config import BOT_TOKEN
+from handlers.start import router
+
+bot = Bot(BOT_TOKEN)
 dp = Dispatcher()
 
-@dp.message(CommandStart())
-async def start(message: Message):
-    await message.answer(
-        "👋 أهلاً بك في بوت البريد المؤقت.\n\n"
-        "🚧 البوت قيد التطوير."
-    )
+dp.include_router(router)
 
 async def main():
     await dp.start_polling(bot)
